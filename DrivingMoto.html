@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DrivingMoto — تدريب سياقة الموتور للبنات</title>
+  <style>
+    :root{
+      --pink:#FFD6E8;
+      --pink-deep:#FF6FA3;
+      --mauve:#9B7BCF;
+      --nude:#F6EAE0;
+      --dark:#222;
+      --muted:#666;
+      --card:#fff;
+    }
+    *{box-sizing:border-box}
+    body{font-family: "Segoe UI", Tahoma, Arial, sans-serif; background:linear-gradient(180deg,var(--nude),#fff); color:var(--dark); margin:0; padding:0}
+    .container{max-width:980px;margin:18px auto;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--pink),var(--mauve));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:4px 0 0;color:var(--muted)}
+    .cta{background:var(--pink-deep);color:#fff;padding:10px 16px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:18px}
+    .card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+
+    .services{display:flex;flex-direction:column;gap:12px}
+    .service{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;border:1px solid #f0e8f3}
+    .price{font-weight:800}
+    .offer{background:linear-gradient(90deg,var(--pink-deep),var(--mauve));color:#fff;padding:8px;border-radius:10px;font-weight:700;text-align:center}
+
+    .times{margin-top:8px;color:var(--muted)}
+    .gallery{display:flex;gap:20px;margin-top:12px }
+    .gallery img{width:100px;height:100px;object-fit:cover;border-radius:10px}
+
+    form label{display:block;margin-bottom:6px;font-weight:600}
+    .field{margin-bottom:12px}
+    input[type=text],input[type=tel],select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #eee}
+    .radio-row{display:flex;gap:8px;align-items:center}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-submit{background:var(--mauve);color:#fff}
+    .btn-wapp{background:var(--pink-deep);color:#fff;margin-top:8px;width:100%}
+
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media(max-width:880px){
+      .grid{grid-template-columns:1fr;}
+      .gallery img{height:90px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">DM</div>
+        <div>
+          <h1>DrivingMoto</h1>
+          <p class="lead">تدريب سياقة الموتور للبنات فقط — من الصفر حتى الاحتراف</p>
+        </div>
+      </div>
+      <div>
+        <button class="cta" onclick="scrollToForm()">📩 تسجيـل دابـا</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h2>مرحبا بكِ في DrivingMoto</h2>
+          <p class="times">تعليم آمن ومحترف فـ أكادير — دروس عملية ومعدات مهيّأة</p>
+
+          <div class="services" aria-hidden>
+            <div class="service">
+              <div style="flex:1">
+                <div>تعليم السكوتر</div>
+                <div class="price">100 درهم / الساعة (شامل كراء والليصانص)</div>
+              </div>
+            </div>
+            <div class="service">
+              <div style="flex:1">
+                <div>تعليم الفيتيس</div>
+                <div class="price">100  درهم / الساعة  (شامل كراء والليصانص)</div>
+              </div>
+            </div>
+            <div class="service offer">
+              عرض الأسبوع: سكوتر + فيتيس — ساعتين بـ 170 درهم
+            </div>
+          </div>
+
+          <div class="gallery" aria-hidden>
+            <img src="scooter.jpg" alt="سكوتر"/>
+            <img src="vitis.jpg" alt="فيتيس"/>
+          </div>
+
+          <h3 style="margin-top:12px">أوقات العمل</h3>
+          <p class="times">الاثنين - السبت: 8:30 - 12:30 / 14:30 - 18:30</p>
+        </section>
+
+        <section class="card" style="margin-top:12px">
+          <h3>ماذا نوفّر؟</h3>
+          <ul>
+            <li>دروس فردية أو ثنائية حسب الاختيار</li>
+            <li>تأمين قواعد السلامة والتدريب العملي</li>
+          </ul>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card" id="formCard">
+          <h3>استمارة التسجيل</h3>
+          <form id="regForm" onsubmit="return sendToWhatsApp(event)">
+            <div class="field">
+              <label for="name">الاسم الكامل</label>
+              <input id="name" name="name" type="text" placeholder="اسمك الكامل" required>
+            </div>
+            <div class="field">
+              <label for="phone">رقم الهاتف</label>
+              <input id="phone" name="phone" type="tel" placeholder="06xxxxxxxx" value="+212" required>
+            </div>
+            <div class="field">
+              <label>نوع التدريب</label>
+              <div class="radio-row">
+                <label><input type="radio" name="type" value="سكوتر" checked> سكوتر</label>
+                <label><input type="radio" name="type" value="فيتيس"> فيتيس</label>
+                <label><input type="radio" name="type" value="بجوج"> بجوج</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="timePref">الوقت اللي يناسبك</label>
+              <select id="timePref" name="timePref">
+                <option value="صباح">صباح</option>
+                <option value="مساء">مساء</option>
+                <option value="ساعة محددة">ساعة محددة</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="note">ملاحظة (اختياري)</label>
+              <textarea id="note" name="note" rows="3" placeholder="شي ملاحظة بحال: نريد متدربة..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-wapp">إرسال الطلب عبر WhatsApp</button>
+            <button type="button" class="btn" style="margin-top:8px;background:#fff;border:1px solid #eee;" onclick="fillExample()">ملأ مثال</button>
+
+            <p style="font-size:13px;color:var(--muted);margin-top:10px">بعد الإرسال غادي يفتح WhatsApp باش ترسلي الطلب، وإحنا غادي نردّو عليك فـ أسرع وقت.</p>
+          </form>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      DrivingMoto — أكادير • للتواصل: 0605184045 
+    </footer>
+  </div>
+
+  <script>
+    const targetPhone = '212605184045'; // رقم بلا +
+
+    function scrollToForm(){
+      document.getElementById('formCard').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    function fillExample(){
+      document.getElementById('name').value = 'أسماء بنعيسى';
+      document.getElementById('phone').value = '+212605184045';
+      document.querySelector('input[name="type"][value="سكوتر"]').checked = true;
+      document.getElementById('timePref').value = 'صباح';
+      document.getElementById('note').value = 'بغيت نبدأ هاد السيمانة إذا كان ممكن';
+    }
+
+    function sendToWhatsApp(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      let phone = document.getElementById('phone').value.trim();
+      const type = document.querySelector('input[name="type"]:checked').value;
+      const timePref = document.getElementById('timePref').value;
+      const note = document.getElementById('note').value.trim();
+
+      if(!name || !phone){
+        alert('عافاك عبّي الاسم والرقم');
+        return false;
+      }
+
+      // normalize phone: remove spaces and leading + if present
+      phone = phone.replace(/\s+/g,'').replace(/^\+/, '');
+
+      const message = `Salam 🌸%0A%0Aبغيت نتسجل ف DrivingMoto%0A%0Aالاسم: ${encodeURIComponent(name)}%0Aالرقم: ${encodeURIComponent(phone)}%0Aنوع التدريب: ${encodeURIComponent(type)}%0Aالوقت: ${encodeURIComponent(timePref)}%0Aملاحظة: ${encodeURIComponent(note)}`;
+
+      // Use site phone as recipient (targetPhone). The user's phone is included in the message body.
+      const waUrl = `https://wa.me/${targetPhone}?text=${message}`;
+
+      // open whatsapp in new tab
+      window.open(waUrl, '_blank');
+      return false;
+    }
+  </script>
+</body>
+</html>
